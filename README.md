@@ -12,6 +12,14 @@ The SDK exists to keep program integration consistent. Rather than duplicating o
 
 It is deliberately small and transparent. The code favors explicit buffers and public constants so developers can inspect every byte sent to or read from Solana accounts.
 
+## Byte Boundary
+
+![SDK byte boundary](docs/diagrams/sdk-byte-boundary.svg)
+
+The SDK owns protocol bytes, not application behavior. It derives PDAs, builds instruction payloads, exposes public constants, and decodes fixed account layouts. It does not decide RPC endpoints, wallet UX, retry policy, or transaction confirmation strategy.
+
+That boundary is important for external developers. They can import one module for the program surface they need, compare decoder offsets with Rust account definitions, and still keep their own signing and networking model. When a program layout changes, the SDK should change in the same review cycle.
+
 ## System Principles
 
 - No hidden RPC policy: the SDK builds instructions and decodes accounts; applications decide how they connect, sign, retry, and surface errors.

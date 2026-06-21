@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">SDK byte boundary</title>
+  <desc id="desc">A diagram showing how the NiceChunk SDK derives PDAs, builds instructions, decodes account bytes, and leaves RPC and signing policy to applications.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#080d13"/>
+      <stop offset="1" stop-color="#14120d"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M2 2 L10 6 L2 10 Z" fill="#8fdcff"/>
+    </marker>
+    <style>
+      .label{font:800 12px Inter,ui-sans-serif,system-ui,sans-serif;letter-spacing:.16em;fill:#90ff1a}
+      .title{font:850 42px Inter,ui-sans-serif,system-ui,sans-serif;fill:#f3f8ff}
+      .copy{font:500 17px Inter,ui-sans-serif,system-ui,sans-serif;fill:#b8c7d4}
+      .card{fill:rgba(255,255,255,.06);stroke:rgba(255,255,255,.16);stroke-width:1.2;rx:18}
+      .head{font:800 18px Inter,ui-sans-serif,system-ui,sans-serif;fill:#f3f8ff}
+      .small{font:600 13px Inter,ui-sans-serif,system-ui,sans-serif;fill:#bdd0df}
+      .mono{font:750 13px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:#f7d98f}
+      .line{stroke:#8fdcff;stroke-width:3;fill:none;marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <text x="70" y="78" class="label">SDK INTEGRATION SURFACE</text>
+  <text x="70" y="132" class="title">The SDK owns bytes, not application policy.</text>
+  <text x="70" y="168" class="copy">Callers decide RPC, signing, retry, and UX. The SDK keeps seeds, instruction data, and account offsets consistent.</text>
+  <g transform="translate(82 258)"><rect class="card" width="220" height="190"/><text x="24" y="42" class="head">Inputs</text><text x="24" y="78" class="small">wallet public keys</text><text x="24" y="108" class="small">world coordinates</text><text x="24" y="138" class="small">resource records</text><text x="24" y="168" class="small">program ID overrides</text></g>
+  <path class="line" d="M302 354 H370"/>
+  <g transform="translate(392 226)"><rect class="card" width="238" height="254"/><text x="24" y="42" class="head">SDK modules</text><text x="24" y="78" class="mono">derive*Pda()</text><text x="24" y="108" class="mono">create*Instruction()</text><text x="24" y="138" class="mono">decode*Account()</text><text x="24" y="172" class="small">core, player, chunk,</text><text x="24" y="198" class="small">guardian, backpack</text></g>
+  <path class="line" d="M630 354 H698"/>
+  <g transform="translate(720 226)"><rect class="card" width="238" height="254"/><text x="24" y="42" class="head">Byte contract</text><text x="24" y="78" class="small">fixed lengths</text><text x="24" y="108" class="small">magic headers</text><text x="24" y="138" class="small">little-endian fields</text><text x="24" y="168" class="small">PDA seed order</text><text x="24" y="202" class="mono">offset === LEN</text></g>
+  <path class="line" d="M958 354 H1026"/>
+  <g transform="translate(1048 258)"><rect class="card" width="164" height="190"/><text x="24" y="42" class="head">Callers</text><text x="24" y="78" class="small">web client</text><text x="24" y="108" class="small">scripts</text><text x="24" y="138" class="small">tests</text><text x="24" y="168" class="small">external tools</text></g>
+  <text x="284" y="596" class="copy">Reviewers should be able to compare TypeScript offsets directly with Rust account layouts.</text>
+</svg>
