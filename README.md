@@ -20,6 +20,14 @@ The SDK owns protocol bytes, not application behavior. It derives PDAs, builds i
 
 That boundary is important for external developers. They can import one module for the program surface they need, compare decoder offsets with Rust account definitions, and still keep their own signing and networking model. When a program layout changes, the SDK should change in the same review cycle.
 
+## Transaction Builder Flow
+
+![Transaction builder flow](docs/diagrams/transaction-builder-flow.svg)
+
+The SDK should feel predictable in code review. Application code passes typed inputs into helpers, the SDK derives deterministic PDAs, builds account metas and payload bytes, then returns `TransactionInstruction` objects. Sending, signing, retrying, and user-facing confirmation remain application responsibilities.
+
+This keeps the package useful for scripts and browser clients at the same time. A script can use the same PDA and decoder logic as the game client without inheriting browser session behavior, and a frontend can keep wallet UX separate from byte layout correctness.
+
 ## System Principles
 
 - No hidden RPC policy: the SDK builds instructions and decodes accounts; applications decide how they connect, sign, retry, and surface errors.
