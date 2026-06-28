@@ -6,8 +6,9 @@
   "type": "module",
   "scripts": {
     "audit:deps": "node scripts/audit-dependencies.mjs",
+    "audit:licenses": "node scripts/audit-licenses.mjs",
     "core:derive-pdas": "node scripts/derive-pdas.ts",
-    "validate:release": "npm run audit:deps"
+    "validate:release": "npm run audit:deps && npm run audit:licenses"
   },
   "dependencies": {
     "@solana/spl-token": "^0.4.14",
