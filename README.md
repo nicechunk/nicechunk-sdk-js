@@ -4,6 +4,10 @@
 
 JavaScript and TypeScript helpers for NiceChunk program integration.
 
+## Official Links
+
+GitHub: [https://github.com/nicechunk/nicechunk-sdk-js](https://github.com/nicechunk/nicechunk-sdk-js)
+
 ## Project Overview
 
 This repository provides the JavaScript and TypeScript integration layer for NiceChunk. It contains PDA derivation helpers, instruction builders, account decoders, constants, and script utilities used by browser code, command-line tools, and protocol tests.
